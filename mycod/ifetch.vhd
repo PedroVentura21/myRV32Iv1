@@ -15,7 +15,7 @@ architecture behavior of ifetch is
     constant num4   : std_logic_vector(31 downto 0) := x"00000004";
     signal PCnext   : std_logic_vector(31 downto 0);
     signal PCnew    : std_logic_vector(31 downto 0);
-    signal PCplus4  : std_logic_vector(31 downto 0) := x"00000000";
+    signal PCplus4  : std_logic_vector(31 downto 0);
     signal PCtarget : std_logic_vector(31 downto 0);
 
 begin
