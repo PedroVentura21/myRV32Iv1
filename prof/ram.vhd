@@ -24,8 +24,8 @@ use ieee.std_logic_textio.all;
 entity ram is
   generic(	
     DATA_WIDTH		: integer := 8;
-	ADDRESS_WIDTH	: integer := 16;
-	DEPTH			: integer := 65535;
+    ADDRESS_WIDTH	: integer := 16;
+    DEPTH			: integer := 65535;
   );
   port (
        clk: in std_logic;
