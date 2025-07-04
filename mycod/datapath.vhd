@@ -34,6 +34,7 @@ architecture behavior of datapath is
     signal Result   : std_logic_vector(31 downto 0);
     signal ulaResult: std_logic_vector(31 downto 0);
     signal A, B     : std_logic_vector(31 downto 0);
+    signal PCplus4  : std_logic_vector(31 downto 0);
 begin
     IFE : entity work.ifetch
     port map (
@@ -41,7 +42,8 @@ begin
         rst => rst, -- in_dp
         PCsrc => PCSrc, -- in_dp
         imm => immExt, -- signal
-        PCcurt => PC -- out_dp
+        PCcurt => PC, -- out_dp
+        PCplus4 => PCplus4
     );
 
     ID : entity work.idecoder
@@ -80,7 +82,7 @@ begin
     port map(
         d0 => ulaResult, -- signal
         d1 => readData, -- in_dp
-        d2 => (others => '0'), -- Era pra ser o PCplus4 do ifetch
+        d2 => PCplus4, -- signal
         s => ResultSrc, -- in_dp
         y => Result -- signal
     );
