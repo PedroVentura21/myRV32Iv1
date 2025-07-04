@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity myRV32Iv1 is
+entity myRISCVv1 is
     port(
         -- sistema
         clk : in std_logic;
@@ -17,7 +17,7 @@ entity myRV32Iv1 is
     );
 end entity myRISCVv1;
 
-architecture behavior of myRV32Iv1 is
+architecture behavior of myRISCVv1 is
     signal op, funct7 : std_logic_vector(6 downto 0);
     signal funct3, aluControl : std_logic_vector(2 downto 0);
     signal zero, PCsrc, aluSrc, we, RegWrite: std_logic;

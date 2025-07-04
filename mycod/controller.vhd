@@ -31,19 +31,16 @@ begin
   begin
     case op is
       when "0000011" =>   -- lw
-        comandos <= "1_00_1_0_01_00_00_0";
+        comandos <= "100100100000";
         
       when "0100011" =>   -- sw
-        comandos <= "0_01_1_1_00_00_00_0"; 
-        -- resultSrc era 'xx'
+        comandos <= "001110000000"; -- resultSrc era 'xx'
         
       when "0110011" =>   -- R-type
-        comandos <= "1_00_0_0_00_00_10_0"; 
-        -- immSrc era 'xx'
+        comandos <= "100000000100"; -- immSrc era 'xx'
         
       when "1100011" =>   -- beq or bne
-        comandos <= "0_10_0_0_00_00_01_0"; 
-        -- resultSrc era 'xx'
+        comandos <= "010000000100"; -- resultSrc era 'xx'
 
         if funct3 = "000" then
             comandos(4) <= '1'; -- beq
@@ -52,15 +49,13 @@ begin
         end if;
         
       when "0010011" =>   -- I-type (ALU)
-        comandos <= "1_00_1_0_00_00_10_0";
+        comandos <= "100100000100";
 
       when "1101111" =>   -- Jal
-        comandos <= "1_11_1_0_10_00_00_1"; 
-        -- aluSrc era 'x', aluOp era 'xx'
+        comandos <= "111101000001"; -- aluSrc era 'x', aluOp era 'xx'
 
       when others =>
-        comandos <= (others => '0'); 
-        -- Todos os campos eram 'x'
+        comandos <= (others => '0'); -- Todos os campos eram 'x'
     end case;
   end process;
   
@@ -94,8 +89,7 @@ begin
           when "111" =>   -- and, andi
             aluControl <= "010";
           when others => -- unknown
-            aluControl <= "000"; 
-            -- Era '---'
+            aluControl <= "000"; -- Era '---'
         end case;
     end case;
   end process;   
