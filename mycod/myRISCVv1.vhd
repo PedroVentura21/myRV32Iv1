@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity myRISCVv1 is
     port(
@@ -22,6 +23,7 @@ architecture behavior of myRISCVv1 is
     signal funct3, aluControl : std_logic_vector(2 downto 0);
     signal zero, PCsrc, aluSrc, we, RegWrite: std_logic;
     signal ResultSrc, immSrc: std_logic_vector(1 downto 0);
+    signal ALUResult_s : std_logic_vector(31 downto 0);
 begin
 
     DATAPATH : entity work.datapath
@@ -33,7 +35,7 @@ begin
         PC => PC, -- myRV_out
         instr => Instr, -- myRV_in
         -- ram
-        ALUResult => ALUResult, -- myRV_out
+        ALUResult => ALUResult_s, -- myRV_out
         MemWrite_out => MemWrite, -- myRV_out
         WriteData => WriteData, -- myRV_out
         ReadData => ReadData, -- myRV_in
@@ -66,4 +68,11 @@ begin
         regWrite => regWrite,
         aluControl => ALUControl
     );
+
+    -- gabiarra temporaria:
+    -- o 'to_integer(unsigned(a))' da ram esta lendo 'signed' e dando erro...
+    ALUResult <=
+        ALUResult_s 
+            when to_integer(signed(ALUResult_s)) > 0 else
+        (others => '0');
 end architecture behavior;
