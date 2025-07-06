@@ -21,14 +21,14 @@ architecture behavior of controller is
   signal jump    : std_logic;
   signal bne     : std_logic;
   signal beq     : std_logic;
+  signal RtypeSub: std_logic;
   signal comandos: std_logic_vector(11 downto 0);
   -- composição dos bits de 'comandos':
   -- (regWrite, immSrc(1), immSrc(0), aluSrc, memWrite, resultSrc(1), resultSrc(0), beq, bne, aluOp(1), aluOp(0), Jump)
 begin
-  PCSrc <= (zero and beq) or ((not zero) and bne) or jump;
-  
-  mainDecoder: process(op)
-  begin
+
+  mainDecoder: process(op, funct3)
+  begin    
     case op is
       when "0000011" =>   -- lw
         comandos <= "100100100000";
@@ -40,12 +40,12 @@ begin
         comandos <= "100000000100"; -- immSrc era 'xx'
         
       when "1100011" =>   -- beq or bne
-        comandos <= "010000000100"; -- resultSrc era 'xx'
+        comandos <= "010000000010"; -- resultSrc era 'xx'
 
         if funct3 = "000" then
-            comandos(4) <= '1'; -- beq
+          comandos(4) <= '1';
         else
-            comandos(3) <= '1'; -- bne
+          comandos(3) <= '1';
         end if;
         
       when "0010011" =>   -- I-type (ALU)
@@ -62,8 +62,11 @@ begin
   (regWrite, immSrc(1), immSrc(0), aluSrc, memWrite, resultSrc(1), 
   resultSrc(0), beq, bne, aluOp(1), aluOp(0), Jump) <= comandos;
 
+  RtypeSub <= funct7(5) and op(5);
 
-  aluDecoder: process (op, funct3, funct7, aluOp)   
+  PCSrc <= (zero and beq) or ((not zero) and bne) or jump;
+  
+  aluDecoder: process (funct3, RtypeSub, aluOp)   
   begin
     aluControl <= "000"; -- Definido um valor padrão para aluControl
 
@@ -75,7 +78,7 @@ begin
       when others =>
         case funct3 is   -- R-type or I-type ALU
           when "000" =>   -- add, addi, sub
-            if funct7(5) = '1' then
+            if RtypeSub = '1' then
               alucontrol <= "001"; -- subtration (sub)
             else
               aluControl <= "000"; -- addition (add, addi)
