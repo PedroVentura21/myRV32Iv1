@@ -33,6 +33,10 @@ begin
             when "011" =>
                 result <= A or B;
 
+            -- 100: XOR
+            when "100" =>
+                result <= A xor B;
+                
             -- 101: SLT (Set on Less Than, com sinal)
             when "101" =>
                 if signed(A) < signed(B) then
@@ -40,7 +44,6 @@ begin
                 else
                     result <= x"00000000";
                 end if;
-
             -- Caso o ALUControl seja um valor inesperado
             when others =>
                 result <= (others => 'X');
