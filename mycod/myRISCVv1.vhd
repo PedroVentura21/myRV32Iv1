@@ -68,11 +68,4 @@ begin
         regWrite => regWrite,
         aluControl => ALUControl
     );
-
-    -- gabiarra temporaria:
-    -- o 'to_integer(unsigned(a))' da ram esta lendo 'signed' e dando erro...
-    ALUResult <=
-        ALUResult_s 
-            when to_integer(signed(ALUResult_s)) > 0 else
-        (others => '0');
 end architecture behavior;
