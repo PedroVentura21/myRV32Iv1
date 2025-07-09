@@ -21,8 +21,8 @@ end entity myRISCVv1;
 architecture behavior of myRISCVv1 is
     signal op, funct7 : std_logic_vector(6 downto 0);
     signal funct3, aluControl : std_logic_vector(2 downto 0);
-    signal zero, PCsrc, aluSrc, we, RegWrite: std_logic;
-    signal ResultSrc, immSrc: std_logic_vector(1 downto 0);
+    signal zero, aluSrc, we, RegWrite: std_logic;
+    signal ResultSrc, PCsrc, immSrc: std_logic_vector(1 downto 0);
     signal ALUResult_s : std_logic_vector(31 downto 0);
 begin
 

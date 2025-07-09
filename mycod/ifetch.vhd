@@ -5,8 +5,9 @@ entity ifetch is
     port(
         clk     : in std_logic;
         rst     : in std_logic;
-        PCsrc   : in std_logic;
+        PCsrc   : in std_logic_vector(1 downto 0);
         imm     : in std_logic_vector(31 downto 0);
+        PCjalr  : in std_logic_vector(31 downto 0);
         PCcurt  : out std_logic_vector(31 downto 0);
         PCplus4 : out std_logic_vector(31 downto 0)
     );
@@ -20,10 +21,13 @@ architecture behavior of ifetch is
     signal PCtarget : std_logic_vector(31 downto 0);
 
 begin
-    mux : entity work.mux232 
+    mux : entity work.mux332 
         port map(
             d0 => PCplus4_s,
             d1 => PCtarget,
+            -- Existe um componente que deixa o LSB como 0 para garantir
+            -- que o novo PC retornado pela instr. 'jalr' seja múltiplo de 2
+            d2 => (PCjalr(31 downto 1) & '0'), 
             s => PCsrc,
             y => PCnext
         );

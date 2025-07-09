@@ -19,11 +19,11 @@ entity datapath is
         funct3      : out std_logic_vector(2 downto 0); -- funct3
         funct7      : out std_logic_vector(6 downto 0); -- funct7
         zero        : out std_logic;
-        PCSrc,
         ALUSrc,
         memWrite_in,
         RegWrite    : in std_logic;
         ResultSrc,
+        PCSrc,
         ImmSrc      : in std_logic_vector(1 downto 0);
         ALUControl  : in std_logic_vector(2 downto 0)
     );
@@ -42,8 +42,9 @@ begin
         rst => rst, -- in_dp
         PCsrc => PCSrc, -- in_dp
         imm => immExt, -- signal
+        PCjalr => ulaResult, -- signal
         PCcurt => PC, -- out_dp
-        PCplus4 => PCplus4
+        PCplus4 => PCplus4 -- signal
     );
 
     ID : entity work.idecoder
