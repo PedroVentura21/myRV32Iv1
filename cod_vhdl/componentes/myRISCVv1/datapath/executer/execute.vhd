@@ -14,7 +14,7 @@ end entity execute;
 architecture behavior of execute is
     signal srcB : std_logic_vector(31 downto 0);
 begin
-        mux2 : entity work.mux232
+        MUX_2 : entity work.mux232
         port map(
             d0 => b,
             d1 => c,

@@ -21,7 +21,7 @@ architecture behavior of ifetch is
     signal PCtarget : std_logic_vector(31 downto 0);
 
 begin
-    mux : entity work.mux332 
+    MUX_1 : entity work.mux332 
         port map(
             d0 => PCplus4_s,
             d1 => PCtarget,
@@ -32,7 +32,7 @@ begin
             y => PCnext
         );
 
-    pc : entity work.rreg32
+    PC : entity work.rreg32
         port map(
             clk => clk,
             rst => rst,
@@ -40,7 +40,7 @@ begin
             q	=> PCnew
         );
 
-    plus4 : entity work.adder32
+    PLUS4 : entity work.adder32
         port map(
             a => PCnew,
             b => num4,

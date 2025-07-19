@@ -30,14 +30,14 @@ begin
     funct3 <= instr(14 downto 12);
     funct7 <= instr(31 downto 25);
     
-    extend : entity work.extend
+    EXTEND : entity work.extend
     port map(
         imm => imm,
         immSrc => immSrc,
         immExt => immExt
     );
 
-    reg_file : entity work.registers
+    REG_FILE : entity work.registers
     port map(
         clk => clk,
         rst => rst,
