@@ -34,59 +34,59 @@ Na atual versão do repositório, o processador segue a seguinte arquitetura:
 
 ### 0. testbench
 
-0 - [testbench.vhd](cod_vhdl\testbench.vhd)
+0 - [testbench.vhd](cod_vhdl/testbench.vhd)
 
 ### 1\.  Design
 
-1.0 - [design.vhd](cod_vhdl\componentes\design.vhd)
+1.0 - [design.vhd](cod_vhdl/componentes/design.vhd)
 
-![image](cod_vhdl\componentes\arch_design.jpeg)
+![image](cod_vhdl/componentes/arch_design.jpeg)
 
-fig 1: [arquitetura do design](cod_vhdl\componentes\arch_design.jpeg)
+fig 1: [arquitetura do design](cod_vhdl/componentes/arch_design.jpeg)
 
 1.1 - Instruction Memory (`IM`)
-* 1.1.0 - [rom.vhd](cod_vhdl\componentes\rom.vhd)
-* 1.1.1 - [prog.bin](cod_vhdl\componentes\prog.bin)
+* 1.1.0 - [rom.vhd](cod_vhdl/componentes/rom.vhd)
+* 1.1.1 - [prog.bin](cod_vhdl/componentes/prog.bin)
 
 1.2 - Data Memory (`DM`)
-* 1.2.0 - [ram.vhd](cod_vhdl\componentes\ram.vhd)
+* 1.2.0 - [ram.vhd](cod_vhdl/componentes/ram.vhd)
 
 1.3 - myRISCVv1 (`myRV`)
 
-![image](cod_vhdl\componentes\myRISCVv1\arch_myRISCVv1.jpeg)
+![image](cod_vhdl/componentes/myRISCVv1/arch_myRISCVv1.jpeg)
 
-fig 2: [arq. do myRISCVv1](cod_vhdl\componentes\myRISCVv1\arch_myRISCVv1.jpeg)
+fig 2: [arq. do myRISCVv1](cod_vhdl/componentes/myRISCVv1/arch_myRISCVv1.jpeg)
 
-* 1.3.0 - [myRISCVv1.vhd](cod_vhdl\componentes\myRISCVv1\myRISCVv1.vhd)
-* 1.3.1 - [controller.vhd](cod_vhdl\componentes\myRISCVv1\controller.vhd) (`CONTROLLER`)
+* 1.3.0 - [myRISCVv1.vhd](cod_vhdl/componentes/myRISCVv1/myRISCVv1.vhd)
+* 1.3.1 - [controller.vhd](cod_vhdl/componentes/myRISCVv1/controller.vhd) (`CONTROLLER`)
 * 1.3.2 - Datapath (`DATAPATH`)
-    * 1.3.2.0 - [datapath.vhd](cod_vhdl\componentes\myRISCVv1\datapath\datapath.vhd)
-    * 1.3.2.1 - [mux332.vhd](cod_vhdl\componentes\myRISCVv1\datapath\mux332.vhd) (`MUX_3`)
+    * 1.3.2.0 - [datapath.vhd](cod_vhdl/componentes/myRISCVv1/datapath/datapath.vhd)
+    * 1.3.2.1 - [mux332.vhd](cod_vhdl/componentes/myRISCVv1/datapath/mux332.vhd) (`MUX_3`)
     * 1.3.2.2 - ifetch (`IFE`)
-        * 1.3.2.2.0 - [ifetch.vhd](cod_vhdl\componentes\myRISCVv1\datapath\ifetch\ifetch.vhd)
-        ![image](cod_vhdl\componentes\myRISCVv1\datapath\ifetch\arch_ifetch.jpg)
+        * 1.3.2.2.0 - [ifetch.vhd](cod_vhdl/componentes/myRISCVv1/datapath/ifetch/ifetch.vhd)
+        ![image](cod_vhdl/componentes/myRISCVv1/datapath/ifetch/arch_ifetch.jpg)
 
-            fig 3: [arq. do ifetch](cod_vhdl\componentes\myRISCVv1\datapath\ifetch\arch_ifetch.jpg)
+            fig 3: [arq. do ifetch](cod_vhdl/componentes/myRISCVv1/datapath/ifetch/arch_ifetch.jpg)
 
-        * 1.3.2.2.1 - [rreg32.vhd](cod_vhdl\componentes\myRISCVv1\datapath\ifetch\rreg32.vhd)  (`PC`)
-        * 1.3.2.2.2 - [addr32.vhd](cod_vhdl\componentes\myRISCVv1\datapath\ifetch\addr32.vhd) (`PLUS4`)
+        * 1.3.2.2.1 - [rreg32.vhd](cod_vhdl/componentes/myRISCVv1/datapath/ifetch/rreg32.vhd)  (`PC`)
+        * 1.3.2.2.2 - [addr32.vhd](cod_vhdl/componentes/myRISCVv1/datapath/ifetch/addr32.vhd) (`PLUS4`)
         * **obs.:** mux332 já adicionado (`MUX_1`)
     * 1.3.2.3 - idecoder (`ID`)
-        * 1.3.2.3.0 - [idecoder.vhd](cod_vhdl\componentes\myRISCVv1\datapath\idecoder\idecoder.vhd)
-        ![image](cod_vhdl\componentes\myRISCVv1\datapath\idecoder\arch_idecoder.jpg)
+        * 1.3.2.3.0 - [idecoder.vhd](cod_vhdl/componentes/myRISCVv1/datapath/idecoder/idecoder.vhd)
+        ![image](cod_vhdl/componentes/myRISCVv1/datapath/idecoder/arch_idecoder.jpg)
 
-            fig 4: [arq. do idecoder](cod_vhdl\componentes\myRISCVv1\datapath\idecoder\arch_idecoder.jpg)
+            fig 4: [arq. do idecoder](cod_vhdl/componentes/myRISCVv1/datapath/idecoder/arch_idecoder.jpg)
 
-        * 1.3.2.3.1 - [register.vhd](cod_vhdl\componentes\myRISCVv1\datapath\idecoder\register.vhd) (`REG_FILE`)
-        * 1.3.2.3.2 - [extend.vhd](cod_vhdl\componentes\myRISCVv1\datapath\idecoder\extend.vhd) (`EXTEND`)
+        * 1.3.2.3.1 - [register.vhd](cod_vhdl/componentes/myRISCVv1/datapath/idecoder/register.vhd) (`REG_FILE`)
+        * 1.3.2.3.2 - [extend.vhd](cod_vhdl/componentes/myRISCVv1/datapath/idecoder/extend.vhd) (`EXTEND`)
     * 1.3.2.4 - executer (`EX`)
-        * 1.3.2.4.0 - [execute.vhd](cod_vhdl\componentes\myRISCVv1\datapath\executer\execute.vhd)
-        ![image](cod_vhdl\componentes\myRISCVv1\datapath\executer\arch_executer.jpg)
+        * 1.3.2.4.0 - [execute.vhd](cod_vhdl/componentes/myRISCVv1/datapath/executer/execute.vhd)
+        ![image](cod_vhdl/componentes/myRISCVv1/datapath/executer/arch_executer.jpg)
 
-            fig 5: [arq. do executer](cod_vhdl\componentes\myRISCVv1\datapath\executer\arch_executer.jpg)
+            fig 5: [arq. do executer](cod_vhdl/componentes/myRISCVv1/datapath/executer/arch_executer.jpg)
 
-        * 1.3.2.4.1 - [alu.vhd](cod_vhdl\componentes\myRISCVv1\datapath\executer\alu.vhd) (`ULA`)
-        * 1.3.2.4.2 - [mux232.vhd](cod_vhdl\componentes\myRISCVv1\datapath\executer\mux232.vhd) (`MUX_2`)
+        * 1.3.2.4.1 - [alu.vhd](cod_vhdl/componentes/myRISCVv1/datapath/executer/alu.vhd) (`ULA`)
+        * 1.3.2.4.2 - [mux232.vhd](cod_vhdl/componentes/myRISCVv1/datapath/executer/mux232.vhd) (`MUX_2`)
 
 
 **obs.:** também está assim na organização dos arquivos na pasta [cod_vhdl](cod_vgdl/).
